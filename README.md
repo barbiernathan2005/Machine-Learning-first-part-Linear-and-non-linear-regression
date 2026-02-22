@@ -1,60 +1,62 @@
-# Machine Learning Level 1 – Linear Regression From Python
+# Machine Learning Niveau 1 – Régression Linéaire en Python
 
-## <span style="color:#2E86C1;">Project Overview</span>
+## <span style="color:#2E86C1;">Présentation du projet</span>
 
-This project represents my first structured step into Machine Learning.
+Ce projet représente ma première étape d'apprentissage en Machine Learning.
 
-Everything has been implemented entirely in **Python**, using NumPy for matrix computations and Matplotlib for visualization.  
-The objective was not simply to use machine learning libraries, but to deeply understand how linear regression works mathematically and computationally.
+Tout a été entièrement implémenté en **Python**, en utilisant NumPy pour les calculs matriciels et Matplotlib pour la visualisation.  
+L’objectif n’était pas simplement d’utiliser des bibliothèques de machine learning, mais de comprendre en profondeur le fonctionnement mathématique et algorithmique de la régression linéaire.
 
-Through this project, I focused on:
+À travers ce projet, je me suis concentré sur :
 
-- Matrix-based model formulation
-- Manual implementation of Gradient Descent
-- Cost function minimization
-- Manual computation of R²
-- Polynomial feature engineering
-- Comparison with Scikit-Learn
+- La formulation matricielle du modèle
+- L’implémentation manuelle de la descente de gradient
+- La minimisation de la fonction de coût
+- Le calcul manuel du coefficient de détermination R²
+- Le feature engineering polynomial
+- La comparaison avec Scikit-Learn
 
-All models were first implemented from scratch before being compared with optimized tools. To get all the information, you need to compile the programs. I used a library that generates my datasets randomly, but you can use your own if you prefer.
+Tous les modèles ont d’abord été implémentés manuellement et entièrement en python avant d’être comparés à des outils optimisés.  
+Pour obtenir toutes les informations (temps d’exécution, convergence, métriques), il est nécessaire d’exécuter les programmes.  
+Les datasets sont générés aléatoirement à l’aide d’une bibliothèque, mais il est possible d’utiliser vos propres données si vous le souhaitez.
 
 ---
 
-## <span style="color:#2E86C1;">Mathematical Formulation</span>
+## <span style="color:#2E86C1;">Formulation Mathématique</span>
 
-### Model Hypothesis
+### Hypothèse du modèle
 
-The regression model is expressed in matrix form:
+Le modèle de régression est exprimé sous forme matricielle :
 
 $$
 \hat{y} = X\theta
 $$
 
-Where:
+Où :
 
-- $X \in \mathbb{R}^{m \times n}$ is the design matrix  
-- $\theta \in \mathbb{R}^{n \times 1}$ is the parameter vector  
-- $m$ is the number of samples  
+- $X \in \mathbb{R}^{m \times n}$ est la matrice de design  
+- $\theta \in \mathbb{R}^{n \times 1}$ est le vecteur des paramètres  
+- $m$ est le nombre d’échantillons  
 
-The bias term is handled by adding a column of ones to $X$.
+Le terme de biais est pris en compte en ajoutant une colonne de 1 à la matrice $X$.
 
 ---
 
-### Cost Function
+### Fonction de coût
 
-The cost function implemented in Python is:
+La fonction de coût implémentée en Python est :
 
 $$
 J(\theta) = \frac{1}{2m}(X\theta - y)^T (X\theta - y)
 $$
 
-This formulation allows a fully vectorized implementation without looping over samples.
+Cette formulation permet une implémentation entièrement vectorisée sans boucle.
 
 ---
 
 ### Gradient
 
-The gradient used in Gradient Descent is:
+Le gradient utilisé dans la descente de gradient est :
 
 $$
 \nabla J(\theta) = \frac{1}{m} X^T (X\theta - y)
@@ -62,60 +64,60 @@ $$
 
 ---
 
-### Update Rule
+### Règle de mise à jour
 
 $$
 \theta := \theta - \alpha \nabla J(\theta)
 $$
 
-Where $\alpha$ is the learning rate.
+Où $\alpha$ représente le learning rate.
 
-All computations are performed using NumPy matrix operations.
+Tous les calculs sont effectués à l’aide des opérations matricielles de NumPy.
 
 ---
 
-## <span style="color:#28B463;">1. Univariate Linear Regression</span>
+## <span style="color:#28B463;">1. Régression Linéaire Unidimensionnelle</span>
 
-**File:** [MLregressionlinunidim.py](MLregressionlinunidim.py)
+**Fichier :** [MLregressionlinunidim.py](MLregressionlinunidim.py)
 
-Model:
+Modèle :
 
 $$
 \hat{y} = \theta_1 x + \theta_0
 $$
 
-In this implementation:
+Dans cette implémentation :
 
-- Parameters are randomly initialized
-- The cost is tracked at each iteration
-- Convergence is visualized
-- R² is computed manually:
+- Les paramètres sont initialisés aléatoirement
+- Le coût est enregistré à chaque itération
+- La convergence est visualisée
+- Le coefficient R² est calculé manuellement :
 
 $$
 R^2 = 1 - \frac{\sum (y - \hat{y})^2}{\sum (y - \bar{y})^2}
 $$
 
-### Cost Convergence
+### Convergence du coût
 
 <img src="Figure_1.png" width="600">
 
-### Regression Result
+### Résultat de la régression
 
 <img src="RL1.png" width="600">
 
 ---
 
-## <span style="color:#28B463;">2. Multivariate Linear Regression (2 Features)</span>
+## <span style="color:#28B463;">2. Régression Linéaire Multidimensionnelle (2 features)</span>
 
-**File:** [MLregressionlinmultidim3D.py](MLregressionlinmultidim3D.py)
+**Fichier :** [MLregressionlinmultidim3D.py](MLregressionlinmultidim3D.py)
 
-Model:
+Modèle :
 
 $$
 \hat{y} = \theta_1 x_1 + \theta_2 x_2 + \theta_0
 $$
 
-The design matrix is constructed as:
+La matrice de design est construite comme suit :
 
 $$
 X =
@@ -126,29 +128,29 @@ x_{21} & x_{22} & 1 \\
 \end{pmatrix}
 $$
 
-This demonstrates:
+Cette partie met en évidence :
 
-- Fully vectorized gradient computation
-- 3D visualization of the regression plane
-- Manual performance evaluation
+- Le calcul vectorisé du gradient
+- La visualisation 3D du plan de régression
+- L’évaluation manuelle des performances
 
-### 3D Regression Plane
+### Plan de régression 3D
 
 <img src="RL2.png" width="600">
 
 ---
 
-## <span style="color:#28B463;">3. Polynomial Regression (Feature Engineering)</span>
+## <span style="color:#28B463;">3. Régression Non Linéaire (Feature Engineering Polynomial)</span>
 
-**File:** [MLregressionnonlin.py](MLregressionnonlin.py)
+**Fichier :** [MLregressionnonlin.py](MLregressionnonlin.py)
 
-To model non-linear relationships, a polynomial feature is introduced:
+Pour modéliser des relations non linéaires, une feature polynomiale est introduite :
 
 $$
 x' = x^2
 $$
 
-The new design matrix becomes:
+La nouvelle matrice de design devient :
 
 $$
 X =
@@ -159,57 +161,54 @@ x_2^2 & x_2 & 1 \\
 \end{pmatrix}
 $$
 
-The model remains linear in parameters:
+Le modèle reste linéaire en paramètres :
 
 $$
 \hat{y} = \theta_2 x^2 + \theta_1 x + \theta_0
 $$
 
-### Non-Linear Regression Result
+### Résultat de la régression non linéaire
 
 <img src="RL3.png" width="600">
 
 ---
 
-## <span style="color:#E67E22;">4. Comparison: Custom Gradient Descent vs Scikit-Learn</span>
+## <span style="color:#E67E22;">4. Comparaison : Descente de Gradient personnalisée vs Scikit-Learn</span>
 
-**File:** [comparaisonRLvsRLopti.py](comparaisonRLvsRLopti.py)
+**Fichier :** [comparaisonRLvsRLopti.py](comparaisonRLvsRLopti.py)
 
-In this part, I compared:
+Dans cette partie, je compare :
 
-- My own Gradient Descent implementation
+- Mon implémentation personnelle de la descente de gradient
 - `sklearn.linear_model.LinearRegression`
 
-The comparison includes:
+La comparaison porte sur :
 
-- Execution time
-- Final cost
-- Mean Squared Error
-- R² score
-- Stability across different learning rates
+- Le temps d’exécution
+- Le coût final
+- L’erreur quadratique moyenne (MSE)
+- Le score R²
+- La stabilité selon différents learning rate
 
-### Convergence for Different Learning Rates
+### Convergence pour différents learning rates
 
 <img src="comp2.png" width="600">
 
-This clearly shows how sensitive Gradient Descent is to the choice of learning rate.
+Cela montre clairement la sensibilité de la descente de gradient au choix du learning rate.
 
-### Prediction Comparison
+### Comparaison des prédictions
 
 <img src="comparaison.png" width="600">
 
-When properly tuned, both approaches converge to nearly identical predictions.
+Lorsqu’il est correctement paramétré, mon modèle converge vers des prédictions pratiquement identiques à celles de Scikit-Learn.
 
 ---
 
-## <span style="color:#2E86C1;">Technologies Used</span>
+## <span style="color:#2E86C1;">Technologies utilisées</span>
 
 - Python
 - NumPy
 - Matplotlib
-- Scikit-Learn (used only for comparison)
-
----
-
+- Scikit-Learn (utilisé uniquement pour la comparaison)
 
 
