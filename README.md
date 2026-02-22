@@ -13,7 +13,7 @@ The objective is to understand:
 - Feature engineering (polynomial features)
 - Comparison with Scikit-Learn
 
-All models are implemented manually before comparing with optimized libraries.
+All models are implemented manually before comparing with optimized libraries. The programs are launched to retrieve all the information, and the datasets are randomly generated using a library. You can use and implement your own datasets if you wish.
 
 ---
 
